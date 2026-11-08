@@ -377,19 +377,30 @@
   </div>
 </footer>
 
-<!-- ElevenLabs voice assistant: "CallReady – Prospect FAQ (AI Matthew)" -->
-<elevenlabs-convai agent-id="agent_2701m6tcm06wf3g9a3fytrmyykqt"></elevenlabs-convai>
-<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 
 <script>
-/* "Start a conversation" opens the ElevenLabs widget if its button can be reached; otherwise points to it. */
-document.getElementById('talk-open').addEventListener('click', function(){
-  var w = document.querySelector('elevenlabs-convai');
-  var root = w && w.shadowRoot;
-  var b = root && (root.querySelector('button[aria-label*="all" i]') || root.querySelector('button'));
-  if (b) { b.click(); return; }
-  document.getElementById('talk-hint').innerHTML = 'Use the <b>call button in the bottom-right corner</b> of your screen to start. Prefer email? <a href="mailto:matthew@reestv.com">matthew@reestv.com</a>';
-});
+/* Voice assistant ("CallReady – Prospect FAQ (AI Matthew)"): nothing loads until a visitor
+   clicks "Start a conversation". Then the ElevenLabs widget is added and opened. */
+(function(){
+  var AGENT='agent_2701m6tcm06wf3g9a3fytrmyykqt', btn=document.getElementById('talk-open'), hint=document.getElementById('talk-hint'), loaded=false;
+  function tryOpen(tries){
+    var w=document.querySelector('elevenlabs-convai'), r=w&&w.shadowRoot;
+    var b=r&&(r.querySelector('button[aria-label*="call" i]')||r.querySelector('button[aria-label*="start" i]')||r.querySelector('button'));
+    if(b){b.click();return;}
+    if(tries>0){setTimeout(function(){tryOpen(tries-1);},250);return;}
+    hint.innerHTML='Use the <b>call button in the bottom-right corner</b> of your screen to start. Prefer email? <a href="mailto:matthew@reestv.com">matthew@reestv.com</a>';
+  }
+  btn.addEventListener('click',function(){
+    if(!loaded){
+      loaded=true; btn.textContent='Connecting…';
+      var w=document.createElement('elevenlabs-convai'); w.setAttribute('agent-id',AGENT); document.body.appendChild(w);
+      var sc=document.createElement('script'); sc.src='https://unpkg.com/@elevenlabs/convai-widget-embed'; sc.async=true;
+      sc.onload=function(){btn.textContent='Start a conversation';tryOpen(20);};
+      sc.onerror=function(){btn.textContent='Start a conversation';hint.innerHTML='The voice assistant could not load. Please email <a href="mailto:matthew@reestv.com">matthew@reestv.com</a>.';};
+      document.body.appendChild(sc);
+    } else { tryOpen(4); }
+  });
+})();
 
 /* Example call player: waveform follows the real audio while it plays. */
 (function(){
