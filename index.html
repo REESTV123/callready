@@ -60,6 +60,14 @@
   .cta-row{display:flex;flex-wrap:wrap;gap:12px}
   .hero-img{aspect-ratio:4/3;border-radius:24px;background:var(--card) url("images/hero.jpg") 62% center/cover no-repeat;border:1px solid var(--line)}
 
+  /* Overview video */
+  .watch{padding-top:8px}
+  .watch-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+  .watch-head .lede{margin:0}
+  .watch-head .len{color:var(--muted);font-size:15px;white-space:nowrap}
+  .video-frame{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 24px 64px rgba(0,0,0,.35);aspect-ratio:16/9}
+  .video-frame video{display:block;width:100%;height:100%}
+
   /* Feature cards */
   .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .card{background:var(--card2);border-top:6px solid var(--accent);padding:28px}
@@ -178,6 +186,7 @@
   <div class="wrap">
     <a class="wordmark" href="#top"><span>Call</span><b>Ready</b></a>
     <nav class="nav-links" aria-label="Main">
+      <a href="#watch">Watch</a>
       <a href="#listen">Hear a call</a>
       <a href="#results">Results</a>
       <a href="#pharma">Built for pharma</a>
@@ -195,13 +204,34 @@
     <div>
       <p class="eyebrow">AI call practice for pharma sales teams</p>
       <h1 class="wordmark"><span>Call</span><b>Ready</b></h1>
-      <p class="sub">Reps rehearse real customer conversations with an AI doctor, by voice, whenever they like. Then they get scored and coached on every call.</p>
+      <p class="sub">Sales Representatives or MSLs rehearse real customer conversations with an AI doctor, by voice, whenever they like. Then they get scored and coached on every call.</p>
       <div class="cta-row">
         <a class="btn" href="mailto:matthew@reestv.com?subject=CallReady%20demo">Book a demo</a>
         <a class="btn ghost" href="#listen">Hear a practice call</a>
       </div>
     </div>
     <div class="hero-img" role="img" aria-label="A sales rep in a parked car outside a medical centre, on a hands-free practice call"></div>
+  </div>
+</section>
+
+<!-- 1b · Overview video -->
+<section class="watch" id="watch">
+  <div class="wrap">
+    <div class="watch-head">
+      <div>
+        <p class="eyebrow">See how it works</p>
+        <h2><span class="wordmark"><span>Call</span><b>Ready</b></span> in under two minutes</h2>
+        <p class="lede">How a practice call works, what reps get back, and how managers and trainers use it.</p>
+      </div>
+      <span class="len">1:35 · captions available</span>
+    </div>
+    <div class="video-frame">
+      <video controls playsinline preload="metadata" poster="images/video-poster.jpg" aria-label="CallReady overview video">
+        <source src="video/callready-overview.mp4" type="video/mp4">
+        <track kind="captions" src="video/callready-overview.vtt" srclang="en" label="English">
+        Your browser can't play this video. <a href="video/callready-overview.mp4">Download the CallReady overview (MP4, 12 MB)</a>.
+      </video>
+    </div>
   </div>
 </section>
 
