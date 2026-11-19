@@ -172,7 +172,8 @@
     .path div{border-right:0;border-bottom:1px solid var(--line)}
     .path div:last-child{border-bottom:0}
     .two,.faq{grid-template-columns:1fr}
-    .nav-links a:not(.btn){display:none}
+    .nav-links a:not(.btn):not(.nav-about){display:none}
+    .nav-links{gap:20px}
   }
   @media (max-width:560px){
     section{padding:64px 0}
@@ -197,7 +198,7 @@
       <a href="#results">Results</a>
       <a href="#pharma">Built for pharma</a>
       <a href="#faq">FAQ</a>
-      <a href="about.html">About</a>
+      <a class="nav-about" href="about.html">About</a>
       <a class="btn ghost" href="https://app.callready.com.au/">Log in</a>
     </nav>
   </div>
